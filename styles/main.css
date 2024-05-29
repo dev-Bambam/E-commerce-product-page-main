@@ -1250,10 +1250,6 @@ video {
     justify-content: space-between;
   }
 
-  .lg\:gap-3 {
-    gap: 0.75rem;
-  }
-
   .lg\:gap-4 {
     gap: 1rem;
   }
