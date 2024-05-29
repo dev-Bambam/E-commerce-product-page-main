@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <!-- FONTS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Frontend Mentor | E-commerce product page</title>
+
+    <style>
+      .bgd-product1 {
+        background-image: url(./images/image-product-1.jpg);
+        transition: background-image 0.5s ease-in-out;
+        transform: translateX(0);
+      }
+      .bgd-product2 {
+        background-image: url(./images/image-product-2.jpg);
+        transition: background-image 0.5s ease-in-out;
+        transform: translateX(0);
+      }
+      .bgd-product3 {
+        background-image: url(./images/image-product-3.jpg);
+        transition: background-image 0.5s ease-in-out;
+        transform: translateX(0);
+      }
+      .bgd-product4 {
+        background-image: url(./images/image-product-4.jpg);
+        transition: background-image 0.5s ease-in-out;
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body class="">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <!-- Hamburger Icon -->
+        <button id="menu-btn" class="cursor-pointer md:hidden lg:hidden block">
+          <img
+            src="./images/icon-menu.svg"
+            alt="Menu"
+            class="object-contain btn"
+          />
+        </button>
+
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img src="./images/logo.svg" alt="Logo" class="w-20 object-contain" />
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="hidden md:flex lg:flex space-x-4">
+          <a href="#" class="text-gray-800 hover:text-gray-600">Home</a>
+          <a href="#" class="text-gray-800 hover:text-gray-600">Collections</a>
+          <a href="#" class="text-gray-800 hover:text-gray-600">Men</a>
+          <a href="#" class="text-gray-800 hover:text-gray-600">Women</a>
+          <a href="#" class="text-gray-800 hover:text-gray-600">About</a>
+          <a href="#" class="text-gray-800 hover:text-gray-600">Contact</a>
+        </nav>
+
+        <!-- Cart Icon -->
+        <div class="relative">
+          <div>
+            <a href="#" class="text-gray-800 hover:text-gray-600">
+              <img
+                src="./images/icon-cart.svg"
+                alt="Cart"
+                class="h-6 w-8"
+                id="cart"
+              />
+            </a>
+            <!-- Cart Badge -->
+            <span
+              class="hidden absolute top-0 right-0 inline-flex items-center justify-center px-2 py-2 text-xs font-bold leading-none text-red-100 bg-myOrange rounded-full w-2 h-1"
+              id="cart-badge"
+            ></span>
+          </div>
+          <!-- cart dropdown -->
+          <div
+            id="cart-dropdown"
+            class="absolute w-[20rem] top-16 -right-24 bg-white border border-gray-200 rounded-lg shadow-lg z-50 hidde pb-6 pt-3 h-56 hidden"
+          >
+            <div class="">
+              <h2 class="font-semibold text-lg mx-4 mb-2">Cart</h2>
+              <hr />
+              <!-- empty cart -->
+              <h1
+                class="text-center mt-16 font-semibold text-gb"
+                id="cart-empty"
+              >
+                Your cart is empty.
+              </h1>
+              <!-- cart not empty -->
+              <div class="mt-2 hidden" id="cart-notEmpty">
+                <!-- Example cart item -->
+                <div class="p-4">
+                  <div class="flex items-center mb-4" id="delete-item">
+                    <img
+                      src="./images/image-product-1-thumbnail.jpg"
+                      alt="Product"
+                      class="w-12 h-12 rounded mr-4"
+                    />
+                    <div class="flex-1">
+                      <h3 class="text-sm">Fall Limited Edition Sneakers</h3>
+                      <p class="text-sm text-gray-600">
+                        <span id="actual-value">125.00</span>
+                        <span>x</span>
+                        <span id="multiplier">3</span>
+                        <span class="font-bold" id="total-value">375.00</span>
+                      </p>
+                    </div>
+                    <button
+                      class="text-gray-600 hover:text-gray-800 focus:outline-none"
+                      id="delete"
+                    >
+                      <img
+                        src="./images/icon-delete.svg"
+                        alt="Delete"
+                        class="w-4 h-4 delete"
+                      />
+                    </button>
+                  </div>
+                  <button
+                    class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 mt-4"
+                    id="checkout"
+                  >
+                    Checkout
+                  </button>
+                </div>
+                <!-- End of example cart item -->
+              </div>
+            </div>
+          </div>
+          <!-- cart dropdown end -->
+        </div>
+
+        <!-- User Image -->
+        <div class="ml-4">
+          <img
+            src="./images/image-avatar.png"
+            alt="User"
+            class="w-8 rounded-full"
+          />
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden fixed inset-0 flex z-40 md:hidden transition duration-300 ease-in-out transform"
+      >
+        <div class="fixed inset-0 bg-black opacity-50"></div>
+        <div class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+          <img
+            src="./images/icon-close.svg"
+            alt="Men"
+            class="w-4 cursor-pointer ml-5 mt-5 btn"
+          />
+          <div class="mt-10 flex-1 h-0 overflow-y-auto">
+            <nav class="px-2 space-y-1 font-bold">
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
+                >Collections</a
+              >
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
+                >Men</a
+              >
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
+                >Women</a
+              >
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
+                >About</a
+              >
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-100"
+                >Contact</a
+              >
+            </nav>
+          </div>
+        </div>
+        <div class="flex-shrink-0 w-14"></div>
+      </div>
+    </header>
+
+    <!-- Carousel section -->
+    <div class="w-full lg:hidden">
+      <div
+        class="bgd-product1 bg-no-repeat bg-cover w-full h-[329px] md:h-[400px] flex items-center justify-center"
+        id="bg"
+      >
+        <!-- Adjusted flexbox properties to center the icons -->
+        <div class="flex justify-between items-center w-full px-4" id="control">
+          <!-- Added px-4 to give some padding from the sides -->
+          <img
+            src="./images/icon-previous.svg"
+            alt="Previous"
+            class="w-8 h-8 px-2 py-2 object-contain bg-white rounded-full cursor-pointer prev"
+            id="prev"
+          />
+          <img
+            src="./images/icon-next.svg"
+            alt="Next"
+            class="w-8 h-8 object-contain bg-white rounded-full cursor-pointer px-2 py-2 next"
+            id="next"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Carousel section end-->
+    <!-- Main Content -->
+    <main
+      class="container mx-auto w-full px-4 py-8 md:mx-auto lg:px-16 lg:mb-0 lg:mt-10"
+    >
+      <div
+        class="lg:flex lg:items-center lg:justify-between lg:mx-auto lg:my-auto lg:w-[80%]"
+      >
+        <!-- the left section -->
+        <div class="lg:w-5/12 hidden lg:flex">
+          <div class="space-y-4">
+            <div>
+              <img
+                src="./images/image-product-1.jpg"
+                alt=""
+                class="object-cover rounded-lg"
+              />
+            </div>
+            <!-- thumbnail images and light box -->
+            <div class="flex gap-2">
+              <div class="">
+                <img
+                  src="./images/image-product-1-thumbnail.jpg"
+                  alt=""
+                  class="rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn1"
+                />
+              </div>
+
+              <div class="">
+                <img
+                  src="./images/image-product-2-thumbnail.jpg"
+                  alt=""
+                  class="rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn2"
+                />
+              </div>
+
+              <div class="">
+                <img
+                  src="./images/image-product-3-thumbnail.jpg"
+                  alt=""
+                  class="rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn3"
+                />
+              </div>
+
+              <div class="">
+                <img
+                  src="./images/image-product-4-thumbnail.jpg"
+                  alt=""
+                  class="rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- the right section -->
+        <div class="lg:w-6/12">
+          <div class="space-y-3">
+            <h3 class="text-sm font-bold text-myOrange">SNEAKER COMPANY</h3>
+            <h2 class="text-2xl text-vdb font-bold">
+              Fall Limited Edition Sneakers
+            </h2>
+            <p class="text-gb">
+              These low-profile sneakers are your perfect casual wear
+              companions. Featuring a durable rubber outer sole, they'll
+              withstand everything the weather can offer.
+            </p>
+            <div class="flex justify-between items-center lg:inline-block">
+              <span class="text-2xl font-bold text-vdb"
+                >$<span id="price">129.00</span>
+                <span
+                  class="px-1 text-myOrange rounded-sm ml-1 font-bold text-sm bg-paleOrange"
+                  >50%</span
+                ></span
+              >
+              <div>
+                <span
+                  class="text-sm text-gb text-right font-bold decoration line-through"
+                >
+                  $250.00
+                </span>
+              </div>
+            </div>
+            <!-- caart button and item increment and all -->
+            <div class="lg:flex lg:gap-4">
+              <div
+                class="bg-lgb w-full flex justify-between items-center py-3 rounded-md px-3"
+                id="number-of-item"
+              >
+                <span>
+                  <img
+                    src="./images/icon-minus.svg"
+                    alt=""
+                    class="cursor-pointer minus"
+                  />
+                </span>
+                <span class="font-bold text-vdb item">0</span>
+                <span>
+                  <img
+                    src="./images/icon-plus.svg"
+                    alt=""
+                    class="cursor-pointer plus"
+                  />
+                </span>
+              </div>
+              <button
+                class="flex items-center text-white text-sm w-full rounded-md bg-myOrange py-3 justify-center gap-3 cursor-pointer hover:bg-paleOrange"
+                id="add-to-cart"
+              >
+                <img
+                  src="./images/icon-cart.svg"
+                  alt=""
+                  class="w-5 fill-white"
+                />
+                <span>Add to cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lightbox Modal -->
+      <div
+        id="lightbox"
+        class="fixed inset-0 hidden bg-black bg-opacity-75 z-50 lg:hidden items-center justify-center"
+      >
+        <div class="relative p-4 rounded-md max-w-2xl mx-2">
+          <button
+            id="close-lightbox"
+            class="absolute -top-4 right-[138px] p-1 rounded-full"
+          >
+            <img src="./images/icon-close.svg" alt="Close" class="w-4" />
+          </button>
+          <div class="flex items-center justify-center space-x-4 gap-[-2rem]" id="lightbox-control">
+            <img
+              src="./images/icon-previous.svg"
+              alt="Previous"
+              class="w-8 h-8 object-contain bg-white rounded-full cursor-pointer px-2 py-2 prev absolute left-[135px] prev"
+            />
+            <img
+              src="./images/image-product-1.jpg"
+              alt="Product"
+              class="rounded-md w-[60%]" id="lightbox-image"
+            />
+            <img
+              src="./images/icon-next.svg"
+              alt="Next"
+              class="w-8 h-8 object-contain bg-white rounded-full cursor-pointer px-2 py-2 next absolute right-[120px] next"
+            />
+          </div>
+          <div class="mt-4 flex space-x-3 justify-center">
+            <img
+              src="./images/image-product-1-thumbnail.jpg"
+              alt="Thumbnail 1"
+              class="w-16 h-16 object-cover rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn1"
+            />
+            <img
+              src="./images/image-product-2-thumbnail.jpg"
+              alt="Thumbnail 2"
+              class="w-16 h-16 object-cover rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn2"
+            />
+            <img
+              src="./images/image-product-3-thumbnail.jpg"
+              alt="Thumbnail 3"
+              class="w-16 h-16 object-cover rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn3"
+            />
+            <img
+              src="./images/image-product-4-thumbnail.jpg"
+              alt="Thumbnail 4"
+              class="w-16 h-16 object-cover rounded-md cursor-pointer hover:border-myOrange hover:border-2 tbn4"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>

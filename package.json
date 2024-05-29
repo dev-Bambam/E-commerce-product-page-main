@@ -4,7 +4,7 @@
   "description": "![Design preview for the E-commerce product page coding challenge](./design/desktop-preview.jpg)",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i styles/input.css -o styles/main.css",
+    "build": "tailwindcss -i styles/input.css -o public/styles/main.css",
     "watch": "tailwindcss -i styles/input.css -o styles/main.css --watch"
   },
   "keywords": [],
